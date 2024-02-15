@@ -1,0 +1,124 @@
+
+.title {
+z-index:99;
+xbackground-color:red;
+position:absolute;
+top:50px;
+width:550px;
+padding:50px;
+animation-name: example;
+animation-iteration-count: infinite;
+  color: white;
+  text-shadow: 1px 1px 2px black,
+  		0 0 25px black,
+  		0 0 55px black,
+		0 0 5px black;
+  xbox-shadow: 10px 10px 5px 12px lightblue;
+  font-family:"Trebuchet MS", Helvetica, sans-serif;
+  font-weight:900;
+  font-size:68px;
+}
+
+.scroll-parent {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow-x: hidden;
+}
+.boxes-container {
+  display: flex; /* Arrange boxes horizontally */
+  flex-direction: column; /* Stack them vertically */
+  gap: 20px; /* Add spacing between boxes */
+  ZZ-animation: scroll-boxes 10s linear infinite normal;
+  animation: scroll-boxes 10s linear infinite normal;
+  overflow-y: auto;
+  position:absolute;
+  top:0px;
+  left:0px;
+}
+.boxes-container2 {
+  display: flex; /* Arrange boxes horizontally */
+  flex-direction: column; /* Stack them vertically */
+  gap: 20px; /* Add spacing between boxes */
+  animation: scroll-boxes2 10s linear infinite normal;
+  overflow-y: auto;
+  position:absolute;
+  top:5px;
+  left:0px;
+}
+
+:root {
+  --scroll-end: translateY(-${boxesHeight}px); /* Initial value placeholder */
+}
+:root {
+  --scroll-end2: translateY(-${boxesHeight}px); /* Initial value placeholder */
+}
+:root {
+  --scroll-end3: translateY(-${boxesHeight}px); /* Initial value placeholder */
+}
+
+@keyframes scroll-boxes {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(var(--scroll-end)); 
+    //transform: translateY(-4611px);
+  }
+}
+@keyframes scroll-boxes2 {
+  0% {
+    transform: translateY(var(--scroll-end3));
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.qr-rounded-box {
+  background-color: #eee; /* Light grey background */
+  border-radius: 10px; /* Set your desired corner radius */
+  padding: 20px; /* Add some padding for text and image */
+  width: 15vw;
+  height: 15vw;
+  position:absolute;
+  display:block;
+  z-index:99;
+  right: 5vw;
+  bottom: 5vh;
+}
+.rounded-box {
+  background-color: #eee; /* Light grey background */
+  border-radius: 10px; /* Set your desired corner radius */
+  padding: 20px; /* Add some padding for text and image */
+  width: 450px; /* Set your desired fixed width */
+  height: auto; /* Allow box height to adjust to content */
+}
+
+.rounded-box h2, .rounded-box p {
+  margin: 0; /* Remove default heading and paragraph margins */
+}
+
+.rounded-box img {
+  display: block; /* Makes image sit on a new line below text */
+  margin-top: 20px; /* Add space between text and image */
+}
+body {
+	xx-background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+	background: linear-gradient(-45deg, #ae5732, #a71c5e, #1396b5, #13b59b);
+	background-size: 400% 400%;
+	animation: body-gradient 15s ease infinite;
+	height: 100vh;
+}
+
+@keyframes body-gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
