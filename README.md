@@ -14,3 +14,15 @@ ln /var/www/html/classboard.css  classboard.css
 ln /var/www/html/EventbriteGeneric.png images/EventbriteGeneric.png
 ln /var/www/html/ClassesQR.svg images/ClassesQR.svg
 ```
+
+If you final locations may differ - HTML would need to be corrected to point to correct asset locations (images, js, css, etc)
+
+# Setup
+
+Needs a file called `vars.py` which contains confidentail Eventbrite credentials, specified like:
+
+```
+ORG_ID="1234567"
+TOKEN="ABCDEFG12345678"
+BASIC_SERIES="12345678"
+```

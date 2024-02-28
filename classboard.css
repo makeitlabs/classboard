@@ -29,8 +29,8 @@ animation-iteration-count: infinite;
   display: flex; /* Arrange boxes horizontally */
   flex-direction: column; /* Stack them vertically */
   gap: 20px; /* Add spacing between boxes */
-  ZZ-animation: scroll-boxes 10s linear infinite normal;
   animation: scroll-boxes 10s linear infinite normal;
+  -webkit-animation: scroll-boxes 10s linear infinite normal;
   overflow-y: auto;
   position:absolute;
   top:0px;
@@ -41,6 +41,7 @@ animation-iteration-count: infinite;
   flex-direction: column; /* Stack them vertically */
   gap: 20px; /* Add spacing between boxes */
   animation: scroll-boxes2 10s linear infinite normal;
+  -webkit-animation: scroll-boxes2 10s linear infinite normal;
   overflow-y: auto;
   position:absolute;
   top:5px;
@@ -86,6 +87,18 @@ animation-iteration-count: infinite;
   z-index:99;
   right: 5vw;
   bottom: 5vh;
+}
+.cal-container {
+  background-color: #eee; /* Light grey background */
+  border-radius: 10px; /* Set your desired corner radius */
+  padding: 20px; /* Add some padding for text and image */
+  width: 150px;
+  height: 150px;
+  position:absolute;
+  display:block;
+  z-index:99;
+  right: 15px;
+  bottom: 15px;
 }
 .rounded-box {
   background-color: #eee; /* Light grey background */

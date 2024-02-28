@@ -95,9 +95,9 @@ if __name__ == "__main__":
         print ("<h2>",x,"</h2>")
         num = len(cls[x]['dates'])
         if (num == 1):
-            print (f"<p>{cls[x]['nextdate'].strftime('%A %B %d, %-I:%M %p')}</p>")
+            print (f"<p>{cls[x]['nextdate'].strftime('%A %B %-d, %-I:%M %p')}</p>")
         else:
-            print (f"<p>{num} dates available<br />\nNext Class:{cls[x]['nextdate'].strftime('%A %B %d, %-I:%M %p')}</p>")
+            print (f"<p>{num} dates available<br />\nNext Class:{cls[x]['nextdate'].strftime('%A %B %-d, %-I:%M %p')}</p>")
         print (f"<img src=\"{cls[x]['logo']}\">")
         #for d in sorted(cls[x]['dates'],key=lambda x: x['start']):
         #    print ("   ",d)
@@ -105,6 +105,7 @@ if __name__ == "__main__":
 
     print ("</div> <!-- boxes-container --> ")
 
+    #<!-- We do it twice - to get continuous loop scrolling -->
     print ("<div class='boxes-container2'>")
 
     for x in cls:
@@ -112,9 +113,9 @@ if __name__ == "__main__":
         print ("<h2>",x,"</h2>")
         num = len(cls[x]['dates'])
         if (num == 1):
-            print (f"<p>{cls[x]['nextdate'].strftime('%A %B %d, %-I:%M %p')}</p>")
+            print (f"<p>{cls[x]['nextdate'].strftime('%A %B %-d, %-I:%M %p')}</p>")
         else:
-            print (f"<p>{num} dates available<br />\nNext Class:{cls[x]['nextdate'].strftime('%A %B %d, %-I:%M %p')}</p>")
+            print (f"<p>{num} dates available<br />\nNext Class:{cls[x]['nextdate'].strftime('%A %B %-d, %-I:%M %p')}</p>")
         print (f"<img src=\"{cls[x]['logo']}\">")
         #for d in sorted(cls[x]['dates'],key=lambda x: x['start']):
         #    print ("   ",d)
@@ -127,6 +128,11 @@ if __name__ == "__main__":
     print ("<div class='qr-rounded-box'>")
     print (f"<img src=\"../misc/ClassesQR.svg\" style=\"width:15vw\">")
     print ("</div class='qr-rounded-box'>")
+
+    # Calendar Boxs
+    print ("<div class='cal-container'>")
+    print ("This is a test")
+    print ("</div> <!-- cal-container -->")
 
     print ("</body>")
     print ("</html>")
