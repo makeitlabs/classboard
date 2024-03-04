@@ -1,7 +1,56 @@
 
     var boxesHeight=4611;
 
-    function loadinit() {
+
+async function fetchData() {
+    const url = 'upcomming_cal.cgi'; // Replace with your desired URL
+    try {
+        const response = await fetch(url);
+        if (!response.ok) {
+            throw new Error(`Network response was not ok: ${response.status}`);
+        }
+        const jsonData = await response.json();
+	console.log("FETCHED DATA");
+        console.log(jsonData); // Use the JSON data as needed
+	var enclosingDiv = document.getElementById('calendar');
+	var h4 = document.createElement('h4');
+	h4.textContent="Upcomming Room Reservations";
+	enclosingDiv.replaceChildren(h4);
+	var first=true;
+	for (var c in jsonData) {
+		var e = jsonData[c];
+
+		if (!first) {
+			enclosingDiv.appendChild(document.createElement('hr'));
+		}
+		const div1 = document.createElement('div');
+		div1.style.display = 'flex';
+		div1.style.justifyContent = 'space-between';
+		div1.innerHTML = '<div style="text-align:left"><b>'+e['ROOM']+'</b></div>' +
+				 '<div style="text-align:right"><b>'+e['WHEN']+'</b></div>';
+
+		enclosingDiv.appendChild(div1);
+
+		const div2 = document.createElement('div');
+		div2.style.display = 'flex';
+		div2.style.justifyContent = 'space-between';
+		div2.innerHTML = '<div style="text-align:left">'+e['SUMMARY']+'</div>' +
+				 '<div style="text-align:right"><i>'+e['ORGANIZER']+'</i></div>';
+
+		enclosingDiv.appendChild(div2);
+		first = false;
+	}
+    } catch (error) {
+        console.error('Error fetching data:', error);
+    }
+
+    setTimeout(function(){
+	    fetchData();
+    },1000*60*15);
+}
+
+
+function loadinit() {
     // Get references to elements
 
     window.scrollTo(0,0);
@@ -34,4 +83,13 @@
     setTimeout(function(){
     window.scrollTo(0,0);
     },1000);
+
+
+	console.log("PAGE RELOAD");
+    function autoRefresh() {
+        window.location.reload(true);
+    }
+    setInterval('autoRefresh()', 1000*60*60*4); // Refresh every 4 hours
+
+	fetchData();
 }

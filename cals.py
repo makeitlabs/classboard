@@ -5,6 +5,7 @@ import stripe
 import pytz
 import urllib
 import json
+import html
 import recurring_ical_events
 from dateutil import tz
 from vars import ICALS
@@ -245,6 +246,13 @@ def upcomming_events():
     res = []
     #print (json.dumps(e,indent=2))
     for x in sorted(out,key=lambda i:i['CODE'])[0:4]:
+        if '@' in x['ORGANIZER']:
+            x['ORGANIZER'] = '';
+
+        x['ORGANIZER'] = html.escape(x['ORGANIZER'])[0:30];
+        x['WHEN'] = html.escape(x['WHEN'])[0:30];
+        x['SUMMARY'] = html.escape(x['SUMMARY'])[0:30];
+        x['ROOM'] = html.escape(x['ROOM'])[0:30];
         res.append(x)
 
     return res

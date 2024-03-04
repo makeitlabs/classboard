@@ -132,9 +132,10 @@ if __name__ == "__main__":
     print ("</div class='qr-rounded-box'>")
 
     # Calendar Boxs
-    print ("<div class='cal-container'>")
-    print ("<h4>Upcomming Reservations</h4>")
+    print ("<div id='calendar' class='cal-container'>")
+    print ("<h4>Loading Upcomming Reservations...</h4>")
 
+    """
     for (i,x) in enumerate(cals.upcomming_events()):
         room = x['ROOM']
         organizer = x['ORGANIZER']
@@ -147,16 +148,17 @@ if __name__ == "__main__":
         organizer = html.escape(organizer).replace('{}','')[0:30]
         room = html.escape(room).replace('{}','')[0:30]
         if (i!=0): print ("<hr />")
-        print (f"""
+        print (f"xx""
         <div style="display:flex; justify-content:space-between">
             <div style="align-text:left"><b>{room}</b></div>
             <div style="align-text:right"><b>{when}</b></div>
         </div>
         <div style="display:flex; justify-content:space-between">
             <div style="align-text:left">{summary}</div>
-            <div style="align-text:right">{organizer}</div>
+            <div style="align-text:right"><i>{organizer}</i></div>
         </div>
-        """)
+        "xx"")
+    """
     print ("</div> <!-- cal-container -->")
 
     print ("</body>")

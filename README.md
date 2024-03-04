@@ -9,6 +9,7 @@ Everything in this project needs to be placed elsewhere on webserver. This is ac
 
 ```
 ln /var/www/cgi/evtbrite_TEST.cgi classboard.cgi
+ln /var/www/cgi/upcomming_cals.cgi cals.py
 ln /var/www/html/classboard.js  classboard.js
 ln /var/www/html/classboard.css  classboard.css
 ln /var/www/html/EventbriteGeneric.png images/EventbriteGeneric.png
