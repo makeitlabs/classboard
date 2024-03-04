@@ -247,7 +247,7 @@ def upcomming_events():
             out.append(x)
     res = []
     #print (json.dumps(e,indent=2))
-    for x in sorted(e,key=lambda i:i['CODE'])[0:8]:
+    for x in sorted(e,key=lambda i:i['CODE'])[0:4]:
         res.append(x)
 
     return res

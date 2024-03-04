@@ -135,7 +135,7 @@ if __name__ == "__main__":
     print ("<div class='cal-container'>")
     print ("<h4>Upcomming Reservations</h4>")
 
-    for x in cals.upcomming_events():
+    for (i,x) in enumerate(cals.upcomming_events()):
         room = x['ROOM']
         organizer = x['ORGANIZER']
         when = x['WHEN']
@@ -146,6 +146,7 @@ if __name__ == "__main__":
         summary = html.escape(summary).replace('{}','')[0:30]
         organizer = html.escape(organizer).replace('{}','')[0:30]
         room = html.escape(room).replace('{}','')[0:30]
+        if (i!=0): print ("<hr />")
         print (f"""
         <div style="display:flex; justify-content:space-between">
             <div style="align-text:left"><b>{room}</b></div>
@@ -155,7 +156,6 @@ if __name__ == "__main__":
             <div style="align-text:left">{summary}</div>
             <div style="align-text:right">{organizer}</div>
         </div>
-        <hr />
         """)
     print ("</div> <!-- cal-container -->")
 

@@ -85,26 +85,26 @@ animation-iteration-count: infinite;
   position:absolute;
   display:block;
   z-index:99;
-  right: 5vw;
-  bottom: 5vh;
+  right: 2vw;
+  bottom: 2vh;
 }
 .cal-container {
   background-color: #eee; /* Light grey background */
   border-radius: 10px; /* Set your desired corner radius */
   padding: 20px; /* Add some padding for text and image */
-  right: 25vw;
-  bottom: 5vh;
+  right: 23vw;
+  bottom: 2vh;
   position:absolute;
   display:block;
   z-index:99;
-  top: 65vh;
+  xx-top: 65vh;
   left: 525px;
-  overflow:hidden;
-	    font-family:system-ui;
+  xx-overflow:hidden;
+  font-family:system-ui;
 }
 
         .cal-container h4 {
-            background-color: black;
+            background-color: #999999;
             color: white;
             padding: 0px;
 	    margin-top:-20px;
@@ -113,6 +113,7 @@ animation-iteration-count: infinite;
 	    margin-bottom:5px;
 	    padding:3px;
 	    padding-left:10px;
+	    border-radius:10px;
         }
 .rounded-box {
   background-color: #eee; /* Light grey background */
