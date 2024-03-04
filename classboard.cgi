@@ -4,6 +4,8 @@ import requests
 import json
 import datetime
 import os
+import cals
+import html
 from vars import *
 
 if __name__ == "__main__":
@@ -131,7 +133,30 @@ if __name__ == "__main__":
 
     # Calendar Boxs
     print ("<div class='cal-container'>")
-    print ("This is a test")
+    print ("<h4>Upcomming Reservations</h4>")
+
+    for x in cals.upcomming_events():
+        room = x['ROOM']
+        organizer = x['ORGANIZER']
+        when = x['WHEN']
+        summary = x['SUMMARY']
+        if '@' in organizer:
+            organizer=''
+        when = html.escape(when).replace('{}','')[0:30]
+        summary = html.escape(summary).replace('{}','')[0:30]
+        organizer = html.escape(organizer).replace('{}','')[0:30]
+        room = html.escape(room).replace('{}','')[0:30]
+        print (f"""
+        <div style="display:flex; justify-content:space-between">
+            <div style="align-text:left"><b>{room}</b></div>
+            <div style="align-text:right"><b>{when}</b></div>
+        </div>
+        <div style="display:flex; justify-content:space-between">
+            <div style="align-text:left">{summary}</div>
+            <div style="align-text:right">{organizer}</div>
+        </div>
+        <hr />
+        """)
     print ("</div> <!-- cal-container -->")
 
     print ("</body>")

@@ -221,9 +221,7 @@ def get_calendar(cal_url,device,rundate=None):
       })
 
 
-if __name__ == "__main__":
-    print ("Access-Control-Allow-Origin: *")
-    print("Content-type: application/json\n\n")
+def upcomming_events():
     e = []
 
     for cal in ICALS:
@@ -251,4 +249,14 @@ if __name__ == "__main__":
     #print (json.dumps(e,indent=2))
     for x in sorted(e,key=lambda i:i['CODE'])[0:8]:
         res.append(x)
+
+    return res
+
+
+if __name__ == "__main__":
+    print ("Access-Control-Allow-Origin: *")
+    print("Content-type: application/json\n\n")
+
+    res = upcomming_events()
     print (json.dumps(res,indent=2))
+

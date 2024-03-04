@@ -92,14 +92,28 @@ animation-iteration-count: infinite;
   background-color: #eee; /* Light grey background */
   border-radius: 10px; /* Set your desired corner radius */
   padding: 20px; /* Add some padding for text and image */
-  width: 150px;
-  height: 150px;
+  right: 25vw;
+  bottom: 5vh;
   position:absolute;
   display:block;
   z-index:99;
-  right: 15px;
-  bottom: 15px;
+  top: 65vh;
+  left: 525px;
+  overflow:hidden;
+	    font-family:system-ui;
 }
+
+        .cal-container h4 {
+            background-color: black;
+            color: white;
+            padding: 0px;
+	    margin-top:-20px;
+	    margin-left:-20px;
+	    margin-right:-20px;
+	    margin-bottom:5px;
+	    padding:3px;
+	    padding-left:10px;
+        }
 .rounded-box {
   background-color: #eee; /* Light grey background */
   border-radius: 10px; /* Set your desired corner radius */
