@@ -230,15 +230,12 @@ def upcomming_events():
 
     # COLLAPSE DUPLICATES!!
 
-    """
     dest = []
     for (i,x) in enumerate(e):
         for y in e[i+1:]:
-            if (x['WHEN'] == y['WHEN']) and (x['SUMMARY'] == y['SUMMARY']) and ('DROP' not in x):
+            if (x['ROOM'] == y['ROOM']) and (x['WHEN'] == y['WHEN']) and (x['SUMMARY'] == y['SUMMARY']) and ('DROP' not in x):
                 #print ("MATCH",x,y)
-                y['DEVICE'] = "Laser Room"
                 y['DROP']= True
-    """
 
 
     out = []
@@ -247,7 +244,7 @@ def upcomming_events():
             out.append(x)
     res = []
     #print (json.dumps(e,indent=2))
-    for x in sorted(e,key=lambda i:i['CODE'])[0:4]:
+    for x in sorted(out,key=lambda i:i['CODE'])[0:4]:
         res.append(x)
 
     return res
