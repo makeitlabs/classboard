@@ -24,6 +24,7 @@ animation-iteration-count: infinite;
   width: 100vw;
   height: 100vh;
   overflow-x: hidden;
+  overflow: hidden;
 }
 .boxes-container {
   display: flex; /* Arrange boxes horizontally */
@@ -133,6 +134,7 @@ animation-iteration-count: infinite;
 }
 body {
 	xx-background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+	overflow:hidden;
 	background: linear-gradient(-45deg, #ae5732, #a71c5e, #1396b5, #13b59b);
 	background-size: 400% 400%;
 	animation: body-gradient 15s ease infinite;
