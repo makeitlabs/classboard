@@ -90,7 +90,7 @@ animation-iteration-count: infinite;
   bottom: 2vh;
 }
 .cal-container {
-  background-color: #eee; /* Light grey background */
+  background-color: #f7f7ae; /* Light grey background */
   border-radius: 10px; /* Set your desired corner radius */
   padding: 20px; /* Add some padding for text and image */
   right: 23vw;
@@ -105,7 +105,7 @@ animation-iteration-count: infinite;
 }
 
         .cal-container h4 {
-            background-color: #999999;
+            background-color: #555aff;
             color: white;
             padding: 0px;
 	    margin-top:-20px;
