@@ -1,5 +1,81 @@
+/*
+ 
+  displayboard/read/event {
+  "color": "#777777",
+  "eventcode": 1025,
+  "eventstr": "Allowed Entry",
+  "icon": ":white_check_mark:",
+  "member": "Kevin Towers",
+  "tool": "Cleanspace Front Door"
+}
+Client (null) received PUBLISH (d0, q0, r0, m0, 'displayboard/read/resource/post', ... (74 bytes))
+displayboard/read/resource/post {
+  "Message": "Kevin Towers was allowed entry at Cleanspace Front Door"
+}
 
-    var boxesHeight=4611;
+*/
+var boxesHeight=4611;
+
+
+function mqtt_init() {
+	const mqttClient = mqtt.connect('ws://mqtt:8889/mqtt', {
+	  clientId: 'classboard-frontdoor',
+	});
+
+	mqttClient.on('close', () => {
+	  console.log('close from  to MQTT broker');
+	});
+	mqttClient.on('error', () => {
+	  console.log('error from  to MQTT broker');
+	});
+	mqttClient.on('end', () => {
+	  console.log('Reconnect from  to MQTT broker');
+	});
+	mqttClient.on('reconnect', () => {
+	  console.log('Reconnect from  to MQTT broker');
+	});
+	mqttClient.on('disconnect', () => {
+	  console.log('Disconnected from  to MQTT broker');
+	});
+	mqttClient.on('connect', () => {
+	  console.log('Connected to MQTT broker');
+	  mqttClient.subscribe('displayboard/read/event');
+	  console.log('Connect Done');
+	});
+
+	mqttClient.on('message', (topic, message) => {
+		  var j={};
+		  console.log(`Received message on ${topic}: ${message.toJSON()}`);
+		   try {
+			  if (message.toString() != "") {
+				j = JSON.parse(message.toString());
+			  }
+		   } catch (error) {
+	 	 }
+	if (topic == "displayboard/read/event")  {
+		 if ((j["eventcode"]== 1025) && (j["tool"] == "Cleanspace Front Door")) {
+			  var x = document.getElementById("alert");
+				document.getElementById('alert_text').innerHTML=j["member"];
+				console.log(j);
+				x.classList.remove("hidealert");
+				x.classList.add("showalert");
+				if (alertTimer != null) {
+					clearTimeout(alertTimer);
+				}
+				alertTimer = setTimeout(
+					function() {
+			  var x = document.getElementById("alert");
+					x.classList.add("hidealert");
+					x.classList.remove("showalert");
+					alertTimer=null;
+					},7*1000);
+				}
+			}
+		}
+	)
+
+}
+
 
 
 async function fetchData() {
@@ -50,6 +126,10 @@ async function fetchData() {
 }
 
 
+function autoRefresh() {
+        window.location.reload(true);
+}
+
 function loadinit() {
     // Get references to elements
 
@@ -86,9 +166,6 @@ function loadinit() {
 
 
 	console.log("PAGE RELOAD");
-    function autoRefresh() {
-        window.location.reload(true);
-    }
     setInterval('autoRefresh()', 1000*60*60*4); // Refresh every 4 hours
 
 	fetchData();

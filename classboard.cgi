@@ -31,56 +31,64 @@ if __name__ == "__main__":
 
     <html>
     <head>
+    <script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
     <script src="../misc/classboard.js"></script>
     <link rel="stylesheet" href="../misc/classboard.css">
 </head>
 """)
 
-    r = requests.get(f"https://www.eventbriteapi.com/v3/organizations/{ORG_ID}/events/?status=live&expand=ticket_availability&token={TOKEN}")
-    
     cls={}
-    if ((r.status_code >= 200) and (r.status_code <= 299)):
-        j = r.json()
+    try:
+        r = requests.get(f"https://www.eventbriteapi.com/v3/organizations/{ORG_ID}/events/?status=live&expand=ticket_availability&token={TOKEN}")
+        
+        if ((r.status_code >= 200) and (r.status_code <= 299)):
+            j = r.json()
 
-        #print (json.dumps(j,indent=2))
+            #print (json.dumps(j,indent=2))
 
-        for x in j['events']:
-            n = x['name']['text']
-            found = False
-            t =  (x['start']['local'])
-            # 2023-03-19T10:00:00
-            d = datetime.datetime.strptime(t,"%Y-%m-%dT%H:%M:%S")
-            ds = d.strftime("%A, %B %d, %I:%M %p")
-            l =  x['listed']
-            s =  x['ticket_availability']['is_sold_out']
-            #print (n,t,l,s,d,ds)
-            if l:
-                if n not in out:
-                    out[n]=[]
-                out[n].append({"when":ds,"sold_out":s,"sold_out_text":"<b>Sold Out!</b>" if s else ""})
-            #print (json.dumps(x,indent=2))
-
-            format_string = "%Y-%m-%dT%H:%M:%S"
-            if x['status'] == "live" and x['listed']:
-                starts=datetime.datetime.strptime(x['start']['local'],format_string)
-                if n not in cls:
-                    cls[n]={}
-                    cls[n]['dates']=[]
-                    cls[n]['nextdate']=starts
+            for x in j['events']:
+                n = x['name']['text']
+                found = False
+                t =  (x['start']['local'])
+                # 2023-03-19T10:00:00
+                d = datetime.datetime.strptime(t,"%Y-%m-%dT%H:%M:%S")
+                ds = d.strftime("%A, %B %d, %I:%M %p")
+                l =  x['listed']
+                s =  x['ticket_availability']['is_sold_out']
+                #print (n,t,l,s,d,ds)
+                if l:
+                    if n not in out:
+                        out[n]=[]
+                    out[n].append({"when":ds,"sold_out":s,"sold_out_text":"<b>Sold Out!</b>" if s else ""})
+                #print (json.dumps(x,indent=2))
 
                 format_string = "%Y-%m-%dT%H:%M:%S"
-                cls[n]['dates'].append({
-                    'start':starts,
-                    'end':datetime.datetime.strptime(x['end']['local'],format_string),
-                    })
-                if x['logo'] is not None:
-                    cls[n]['logo']=x['logo']['url']
-                else:
-                    cls[n]['logo']="../misc/EventbriteGeneric.png"
+                if x['status'] == "live" and x['listed']:
+                    starts=datetime.datetime.strptime(x['start']['local'],format_string)
+                    if n not in cls:
+                        cls[n]={}
+                        cls[n]['dates']=[]
+                        cls[n]['nextdate']=starts
 
-                if (starts < cls[n]['nextdate']): cls[n]['nextdate'] = starts
+                    format_string = "%Y-%m-%dT%H:%M:%S"
+                    cls[n]['dates'].append({
+                        'start':starts,
+                        'end':datetime.datetime.strptime(x['end']['local'],format_string),
+                        })
+                    if x['logo'] is not None:
+                        cls[n]['logo']=x['logo']['url']
+                    else:
+                        cls[n]['logo']="../misc/EventbriteGeneric.png"
 
-    print ("<body onload='loadinit()'>")
+                    if (starts < cls[n]['nextdate']): cls[n]['nextdate'] = starts
+
+        print ("<body onload='loadinit()'>")
+    except BaseException as e:
+        # IF eventbrite load failed - try again in 5 minutes
+        print ("<body onload='loadinit()'>")
+        print ("<!-- EVENTBRITE ERROR ")
+        print (html.escape(str(e)))
+        print (" -->")
 
 
     print ("""
@@ -160,6 +168,18 @@ if __name__ == "__main__":
         "xx"")
     """
     print ("</div> <!-- cal-container -->")
+
+    print ("""
+        <div class="centered-container">
+            <div id="alert" class="alert hidealert">
+
+                <img height="86px" style="vertical-align:bottom" src="../misc/MakeItLabsBulb.svg" />
+                <tspan id="alert_title" class="alert_title">Welcome!</tspan>
+                <hr />
+                <tspan id="alert_text" class="alert_text">Firsty McMembername</tspan>
+            </div>
+        </div>
+    """)
 
     print ("</body>")
     print ("</html>")

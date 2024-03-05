@@ -14,6 +14,7 @@ ln /var/www/html/classboard.js  classboard.js
 ln /var/www/html/classboard.css  classboard.css
 ln /var/www/html/EventbriteGeneric.png images/EventbriteGeneric.png
 ln /var/www/html/ClassesQR.svg images/ClassesQR.svg
+ln  images/MakeItLabsBulb.svg /var/www/html/MakeItLabsBulb.svg
 ```
 
 If you final locations may differ - HTML would need to be corrected to point to correct asset locations (images, js, css, etc)
