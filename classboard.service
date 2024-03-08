@@ -1,0 +1,12 @@
+[Unit]
+Description=Class and Calendar Display
+After=multi-user.target
+
+[Service]
+Type=idle
+User=bkg
+ExecStart=/bin/bash /home/bkg/kiosk.sh
+RestartSec=60s
+
+[Install]
+WantedBy=multi-user.target
