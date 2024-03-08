@@ -3,7 +3,7 @@
 
 HTML TV display of classes and lab stuf
 
-# Setup
+# Web Server Setup
 
 Everything in this project needs to be placed elsewhere on webserver. This is accomplished in production through HARD links as follows, but in general, things need to go in `/var/www/cgi` or `/var/www/html` on cgimisc server:
 
@@ -19,7 +19,7 @@ ln  images/MakeItLabsBulb.svg /var/www/html/MakeItLabsBulb.svg
 
 If you final locations may differ - HTML would need to be corrected to point to correct asset locations (images, js, css, etc)
 
-# Setup
+## Setup
 
 Needs a file called `vars.py` which contains confidentail Eventbrite credentials, specified like:
 
@@ -28,3 +28,7 @@ ORG_ID="1234567"
 TOKEN="ABCDEFG12345678"
 BASIC_SERIES="12345678"
 ```
+# Player Device Setup
+
+* Put `kiosk.sh` script on device (RPi)
+* Install `classboard.service` for automatic install
