@@ -13,6 +13,8 @@ from vars import ICALS
 
 # Parameters({'CUTYPE': 'RESOURCE', 'ROLE': 'REQ-PARTICIPANT', 'PARTSTAT': 'ACCEPTED', 'CN': 'MiL-1-Center-Laser room - MOPA (2)', 'X-NUM-GUESTS': '0'})
 
+EPILOG_ID="mailto:makeitlabs.com_3133373236393938363631@resource.calendar.google.com"
+MOPA_ID="mailto:c_1886b6dkec306jdkk38lsbpbejeo8@resource.calendar.google.com"
 
 
 def utctolocal(dt,endofdate=False):
@@ -237,9 +239,10 @@ def upcomming_events():
     dest = []
     for (i,x) in enumerate(e):
         for y in e[i+1:]:
-            if (x['ROOM'] == y['ROOM']) and (x['WHEN'] == y['WHEN']) and (x['SUMMARY'] == y['SUMMARY']) and ('DROP' not in x):
+            if (y['ROOM'] in ('Laser-Epilog','Laser-MOPA')) and (x['WHEN'] == y['WHEN']) and (x['SUMMARY'] == y['SUMMARY']) and ('DROP' not in x):
                 #print ("MATCH",x,y)
                 y['DROP']= True
+                x['ROOM']='Laser Room'
 
 
     out = []
