@@ -192,8 +192,11 @@ def get_calendar(cal_url,device,rundate=None):
             elif 'EPILOG' in reserved:
                 device = "Epilog"
             #print ("APPEND", str(component['SUMMARY']),when)
+            summary = ""
+            if 'SUMMARY' in component:
+                summary = str(component['SUMMARY'])
             entries.append ({
-                "SUMMARY":str(component['SUMMARY']),
+                "SUMMARY":summary,
                 "START":calstart,
                 "END":calend,
                 "START":shortstart,
@@ -245,7 +248,7 @@ def upcomming_events():
             out.append(x)
     res = []
     #print (json.dumps(e,indent=2))
-    for x in sorted(out,key=lambda i:i['CODE'])[0:4]:
+    for x in sorted(out,key=lambda i:i['CODE'])[0:6]:
         if '@' in x['ORGANIZER']:
             x['ORGANIZER'] = '';
 

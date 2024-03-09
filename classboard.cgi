@@ -32,8 +32,8 @@ if __name__ == "__main__":
     <html>
     <head>
     <script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
-    <script src="../misc/classboard.js"></script>
-    <link rel="stylesheet" href="../misc/classboard.css">
+    <script src="../classboard.js"></script>
+    <link rel="stylesheet" href="../classboard.css">
 </head>
 """)
 
@@ -78,7 +78,7 @@ if __name__ == "__main__":
                     if x['logo'] is not None:
                         cls[n]['logo']=x['logo']['url']
                     else:
-                        cls[n]['logo']="../misc/EventbriteGeneric.png"
+                        cls[n]['logo']="../EventbriteGeneric.png"
 
                     if (starts < cls[n]['nextdate']): cls[n]['nextdate'] = starts
 
@@ -92,8 +92,8 @@ if __name__ == "__main__":
 
 
     print ("""
-<video id="myvideo" width=60% height=60% style="z-index:0;position:absolute;top:20px;right:20px" autoplay loop preload playsinline muted>
-  <source class="active" src="../misc/classvideo.mp4" />
+<video id="myvideo" width=70% height=70% style="z-index:0;position:absolute;top:20px;right:20px" autoplay loop preload playsinline muted>
+  <source class="active" xx-src="file://classvideo.mp4" src="../classvideo.mp4" />
   Your browser does not support the video tag.
 </video>
 """)
@@ -136,7 +136,7 @@ if __name__ == "__main__":
     print ("</div> <!-- scroll-parent --> ")
 
     print ("<div class='qr-rounded-box'>")
-    print (f"<img src=\"../misc/ClassesQR.svg\" style=\"width:15vw\">")
+    print (f"<img src=\"../ClassesQR.svg\" style=\"width:15vw\">")
     print ("</div class='qr-rounded-box'>")
 
     # Calendar Boxs
@@ -173,7 +173,7 @@ if __name__ == "__main__":
         <div class="centered-container">
             <div id="alert" class="alert hidealert">
 
-                <img height="86px" style="vertical-align:bottom" src="../misc/MakeItLabsBulb.svg" />
+                <img height="86px" style="vertical-align:bottom" src="../MakeItLabsBulb.svg" />
                 <tspan id="alert_title" class="alert_title">Welcome!</tspan>
                 <hr />
                 <tspan id="alert_text" class="alert_text">Firsty McMembername</tspan>

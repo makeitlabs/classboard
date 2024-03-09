@@ -15,7 +15,7 @@ displayboard/read/resource/post {
 
 */
 var boxesHeight=4611;
-
+var alertTimer=null;
 
 function mqtt_init() {
 	const mqttClient = mqtt.connect('ws://mqtt:8889/mqtt', {
@@ -68,7 +68,7 @@ function mqtt_init() {
 					x.classList.add("hidealert");
 					x.classList.remove("showalert");
 					alertTimer=null;
-					},7*1000);
+					},5*1000);
 				}
 			}
 		}
@@ -169,4 +169,5 @@ function loadinit() {
     setInterval('autoRefresh()', 1000*60*60*4); // Refresh every 4 hours
 
 	fetchData();
+	mqtt_init();
 }
