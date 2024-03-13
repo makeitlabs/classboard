@@ -90,7 +90,7 @@ animation-iteration-count: infinite;
   bottom: 2vh;
 }
 .cal-container {
-  background-image: linear-gradient(45deg, rgb(255, 247, 0), rgba(247, 247, 174, 0.35));
+  background-image: linear-gradient(45deg, rgb(255, 247, 150), rgba(247, 247, 174, 0.35));
   border-radius: 10px; /* Set your desired corner radius */
   padding: 20px; /* Add some padding for text and image */
   right: 23vw;
@@ -124,6 +124,19 @@ animation-iteration-count: infinite;
   height: auto; /* Allow box height to adjust to content */
 }
 
+        .qr-rounded-box h4 {
+		background-image: linear-gradient(90deg, rgb(150, 150, 150), rgba(255, 255, 255,0));
+            color: white;
+            padding: 0px;
+	    margin-top:-20px;
+	    margin-left:-20px;
+	    margin-right:-20px;
+	    margin-bottom:5px;
+	    padding:3px;
+	    padding-left:10px;
+	    border-radius:10px;
+	    font-family:system-ui;
+        }
 .rounded-box h2, .rounded-box p {
   margin: 0; /* Remove default heading and paragraph margins */
 }
@@ -167,9 +180,6 @@ body {
 }
 #alert {
 	z-index:105;
-	xxposition:absolute;
-	xxtop:20px;
-	xxleft:30px;
 	text-shadow: 1px 1px 2px black,
 			0 0 25px black,
 			0 0 55px black,
@@ -207,3 +217,33 @@ body {
 	transition: opacity 5s ease;
 }
 
+
+#alarm {
+	z-index:200;
+	text-shadow: 1px 1px 2px black,
+			0 0 25px black,
+			0 0 55px black,
+			0 0 5px black;
+	box-shadow: 1px 1px 2px black,
+			0 0 25px black,
+			0 0 55px black,
+			0 0 5px black;
+	padding:25px;
+	border-radius:10px;
+	animation: pulse 1s infinite alternate-reverse ease;
+}
+
+        @keyframes pulse {
+            0% {
+                background-color: yellow; /* Initial color */
+            }
+            100% {
+                background-color: red; /* Target color for the pulse effect */
+            }
+        }
+.alarm_text {
+  color: white;
+  font-family:"Trebuchet MS", Helvetica, sans-serif;
+  font-weight:900;
+  font-size:200;
+}

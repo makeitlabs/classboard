@@ -9,6 +9,12 @@ import html
 from vars import *
 
 if __name__ == "__main__":
+    url = os.environ.get('REQUEST_URI','').split("/")[-1]
+    ASSETS = ".."
+    VIDEO = "http://127.0.0.1"
+    if url == "test.cgi": 
+        ASSETS = "../misc"
+        VIDEO = "../misc"
     calname=None
     try:
         if ('QUERY_STRING' in os.environ):
@@ -27,13 +33,13 @@ if __name__ == "__main__":
     print ("Access-Control-Allow-Origin: *")
     print ("Content-Type: text/html\n\n")
 
-    print ("""
+    print (f"""
 
     <html>
     <head>
     <script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
-    <script src="../classboard.js"></script>
-    <link rel="stylesheet" href="../classboard.css">
+    <script src="{ASSETS}/classboard.js"></script>
+    <link rel="stylesheet" href="{ASSETS}/classboard.css">
 </head>
 """)
 
@@ -78,7 +84,7 @@ if __name__ == "__main__":
                     if x['logo'] is not None:
                         cls[n]['logo']=x['logo']['url']
                     else:
-                        cls[n]['logo']="../EventbriteGeneric.png"
+                        cls[n]['logo']=f"{ASSETS}/EventbriteGeneric.png"
 
                     if (starts < cls[n]['nextdate']): cls[n]['nextdate'] = starts
 
@@ -91,9 +97,9 @@ if __name__ == "__main__":
         print (" -->")
 
 
-    print ("""
+    print (f"""
 <video id="myvideo" width=70% height=70% style="z-index:0;position:absolute;top:20px;right:20px" autoplay loop preload playsinline muted>
-  <source class="active" xx-src="file://classvideo.mp4" src="../classvideo.mp4" />
+  <source class="active" xx-src="file://classvideo.mp4" src="{VIDEO}/classvideo.mp4" />
   Your browser does not support the video tag.
 </video>
 """)
@@ -136,7 +142,8 @@ if __name__ == "__main__":
     print ("</div> <!-- scroll-parent --> ")
 
     print ("<div class='qr-rounded-box'>")
-    print (f"<img src=\"../ClassesQR.svg\" style=\"width:15vw\">")
+    print ("<h4>Classes</h4>")
+    print (f"<img src=\"{ASSETS}/ClassesQR.svg\" style=\"width:15vw\">")
     print ("</div class='qr-rounded-box'>")
 
     # Calendar Boxs
@@ -169,16 +176,26 @@ if __name__ == "__main__":
     """
     print ("</div> <!-- cal-container -->")
 
-    print ("""
+    print (f"""
         <div class="centered-container">
             <div id="alert" class="alert hidealert">
 
-                <img height="86px" style="vertical-align:bottom" src="../MakeItLabsBulb.svg" />
+                <img height="86px" style="vertical-align:bottom" src="{ASSETS}/MakeItLabsBulb.svg" />
                 <tspan id="alert_title" class="alert_title">Welcome!</tspan>
                 <hr />
                 <tspan id="alert_text" class="alert_text">Firsty McMembername</tspan>
             </div>
         </div>
+
+        <div class="centered-container">
+            <div style="display:none" id="alarm" class="alarm">
+
+                <img height="200px" style="vertical-align:bottom" src="{ASSETS}/MakeItLabsBulb.svg" />
+                <tspan id="alarm_text" class="alarm_text">Alarm is On!</tspan>
+            </div>
+        </div>
+
+
     """)
 
     print ("</body>")

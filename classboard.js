@@ -40,6 +40,7 @@ function mqtt_init() {
 	mqttClient.on('connect', () => {
 	  console.log('Connected to MQTT broker');
 	  mqttClient.subscribe('displayboard/read/event');
+	  mqttClient.subscribe('facility/alarm/system');
 	  console.log('Connect Done');
 	});
 
@@ -51,7 +52,7 @@ function mqtt_init() {
 				j = JSON.parse(message.toString());
 			  }
 		   } catch (error) {
-	 	 }
+		   }
 	if (topic == "displayboard/read/event")  {
 		 if ((j["eventcode"]== 1025) && (j["tool"] == "Cleanspace Front Door")) {
 			  var x = document.getElementById("alert");
@@ -71,6 +72,16 @@ function mqtt_init() {
 					},5*1000);
 				}
 			}
+        else if (topic == "facility/alarm/system") {
+                        if (message == "armed") {
+                          var x = document.getElementById("alarm");
+                                x.style.display="";
+                        } else {
+                          var x = document.getElementById("alarm");
+                                x.style.display="none";
+                        }
+                        }
+
 		}
 	)
 
@@ -169,5 +180,7 @@ function loadinit() {
     setInterval('autoRefresh()', 1000*60*60*4); // Refresh every 4 hours
 
 	fetchData();
+
+	// Do this LAST so if it fails (ie external) everything else is okay
 	mqtt_init();
 }
