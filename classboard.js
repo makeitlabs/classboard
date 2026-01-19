@@ -57,6 +57,9 @@ function mqtt_init() {
 		 if ((j["eventcode"]== 1025) && (j["tool"] == "Cleanspace Front Door")) {
 			  var x = document.getElementById("alert");
 				document.getElementById('alert_text').innerHTML=j["member"];
+				var el = document.getElementById('alert_nickname');
+			 	el.innerHTML = ("<br />"+j.nickname) || '';
+			 	el.hidden = !j.nickname;
 				console.log(j);
 				x.classList.remove("hidealert");
 				x.classList.add("showalert");
@@ -101,7 +104,7 @@ async function fetchData() {
         console.log(jsonData); // Use the JSON data as needed
 	var enclosingDiv = document.getElementById('calendar');
 	var h4 = document.createElement('h4');
-	h4.textContent="Upcomming Room Reservations";
+	h4.textContent="Upcoming Room Reservations";
 	enclosingDiv.replaceChildren(h4);
 	var first=true;
 	for (var c in jsonData) {

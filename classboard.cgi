@@ -1,5 +1,13 @@
 #!/usr/bin/python3
 
+"""
+NOTE!!!!!
+
+This is the LIVE main page for the front door board.
+(The file is just poorly named!!!!)
+
+
+"""
 import requests
 import json
 import datetime
@@ -148,7 +156,7 @@ if __name__ == "__main__":
 
     # Calendar Boxs
     print ("<div id='calendar' class='cal-container'>")
-    print ("<h4>Loading Upcomming Reservations...</h4>")
+    print ("<h4>Loading Upcoming Reservations...</h4>")
 
     """
     for (i,x) in enumerate(cals.upcomming_events()):
@@ -184,6 +192,7 @@ if __name__ == "__main__":
                 <tspan id="alert_title" class="alert_title">Welcome!</tspan>
                 <hr />
                 <tspan id="alert_text" class="alert_text">Firsty McMembername</tspan>
+                <tspan id="alert_nickname" class="alert_nickname">Nickname</tspan>
             </div>
         </div>
 

@@ -199,6 +199,12 @@ body {
   font-weight:900;
   font-size:10vh;
 }
+.alert_nickname {
+  color: yellow;
+  font-family:"Trebuchet MS", Helvetica, sans-serif;
+  font-weight:100;
+  font-size:5vh;
+}
 
 .alert_title {
   color: white;
@@ -209,7 +215,7 @@ body {
 
 .showalert {
         opacity:100%;
-	transition: opacity 3s ease;
+	transition: opacity 1s ease;
 }
 
 .hidealert {
